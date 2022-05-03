@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+        var x;
+        var y;
+        var timer = 700;
+        var ponto = 0;
+
+        var interval = setInterval(posicao,timer);
+
+        function estourar(){
+             var elemento = document.getElementById("balao");
+             elemento.src = "pow.png";
+             ponto++;
+             document.getElementById("pontos").innerHTML = ponto;
+             clearInterval(interval);
+             interval = setInterval(posicao,3000);
+             clearInterval(interval);
+             interval = setInterval(posicao,timer);
+        }
+
+        function posicao(){
+            var elemento = document.getElementById("balao"); 
+            x = Math.floor(Math.random() * (1300 - 1)) + 1;
+            y = Math.floor(Math.random() * (600 - 1)) + 1
+            
+            elemento.src = "balao.png";
+
+            elemento.style.top = y+"px";            
+            elemento.style.left = x+"px";
+        }
+
+    </script>
+    <table border="1" style="width: 10%;">
+        <tr>
+            <td style="width: 70%;">Pontos:</td>
+            <td id="pontos" style="width: 30%;text-align: center;">0</td>
+        </tr>
+    </table>
+    <img id="balao" src="balao.png" style="position: fixed;cursor: pointer;" onclick="estourar();">
+</body>
+</html>
